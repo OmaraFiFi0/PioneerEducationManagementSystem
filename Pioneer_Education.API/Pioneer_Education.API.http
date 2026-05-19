@@ -1,0 +1,6 @@
+@Pioneer_Education.API_HostAddress = http://localhost:5178
+
+GET {{Pioneer_Education.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pioneer_Education.API", "Pioneer_Education.API\Pioneer_Education.API.csproj", "{0486E7F1-A17B-40BA-85DE-11CB1F9D1698}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pioneer_Education.Core", "Pioneer_Education.Core\Pioneer_Education.Core.csproj", "{B752F8EC-7352-447E-AE77-7D83D918E03B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pioneer_Education.Services", "Pioneer_Education.Services\Pioneer_Education.Services.csproj", "{942D5608-8FD7-4FAD-A910-BE3948DA22D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pioneer_Education.Infrastructure", "Pioneer_Education.Infrastructure\Pioneer_Education.Infrastructure.csproj", "{C4F75CCE-7A22-4A48-97CB-25ED254B9A50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pioneer_Education.Shared", "Pioneer_Education.Shared\Pioneer_Education.Shared.csproj", "{8C084883-934D-4F7A-808D-BB23E36051F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pioneer_Education.Services.Abstraction", "Pioneer_Education.Services.Abstraction\Pioneer_Education.Services.Abstraction.csproj", "{CBD3213F-C9B2-4AD3-A111-21BD73A18CAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0486E7F1-A17B-40BA-85DE-11CB1F9D1698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0486E7F1-A17B-40BA-85DE-11CB1F9D1698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0486E7F1-A17B-40BA-85DE-11CB1F9D1698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0486E7F1-A17B-40BA-85DE-11CB1F9D1698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B752F8EC-7352-447E-AE77-7D83D918E03B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B752F8EC-7352-447E-AE77-7D83D918E03B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B752F8EC-7352-447E-AE77-7D83D918E03B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B752F8EC-7352-447E-AE77-7D83D918E03B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942D5608-8FD7-4FAD-A910-BE3948DA22D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942D5608-8FD7-4FAD-A910-BE3948DA22D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942D5608-8FD7-4FAD-A910-BE3948DA22D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942D5608-8FD7-4FAD-A910-BE3948DA22D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F75CCE-7A22-4A48-97CB-25ED254B9A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F75CCE-7A22-4A48-97CB-25ED254B9A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F75CCE-7A22-4A48-97CB-25ED254B9A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F75CCE-7A22-4A48-97CB-25ED254B9A50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C084883-934D-4F7A-808D-BB23E36051F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C084883-934D-4F7A-808D-BB23E36051F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C084883-934D-4F7A-808D-BB23E36051F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C084883-934D-4F7A-808D-BB23E36051F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBD3213F-C9B2-4AD3-A111-21BD73A18CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD3213F-C9B2-4AD3-A111-21BD73A18CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD3213F-C9B2-4AD3-A111-21BD73A18CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD3213F-C9B2-4AD3-A111-21BD73A18CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27CB6872-3A5A-4862-9748-7D8BECB95388}
+	EndGlobalSection
+EndGlobal
