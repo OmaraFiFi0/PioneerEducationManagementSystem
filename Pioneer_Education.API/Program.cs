@@ -50,6 +50,7 @@ namespace Pioneer_Education.API
 
             builder.Services.AddScoped<ICourseService, CourseService>();
             builder.Services.AddTransient<IAttacehmentService, AttatchmentService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             var app = builder.Build();
 

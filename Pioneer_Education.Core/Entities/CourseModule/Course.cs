@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pioneer_Education.Core.Entities.CategoryModule;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,15 @@ namespace Pioneer_Education.Core.Entities.CouresModule
 
         public ICollection<CourseImage> CourseImages { get; set; } = [];
 
+        /// <summary>
+        /// ///// عاوز ارجعه ميقبلشي null بي سطر الـ SQL دي 
+        /// UPDATE Course
+        //// SET CategoryId = 1
+        /// WHERE CategoryId IS NULL
+        /// </summary>
+        /// 
+        public int CategoryId { get; set; }
+        public Category Category { get; set; } = null!;
 
     }
 }

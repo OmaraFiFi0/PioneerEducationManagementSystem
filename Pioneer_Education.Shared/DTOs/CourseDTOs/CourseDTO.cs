@@ -21,5 +21,9 @@ namespace Pioneer_Education.Shared.DTOs.CourseDTOs
         public int DurationInHours { get; set; }
 
         public string CourseStatus { get; set; } = null!;
+
+
+        public string CategoryName { get; set; } = null!;
+
     }
 }

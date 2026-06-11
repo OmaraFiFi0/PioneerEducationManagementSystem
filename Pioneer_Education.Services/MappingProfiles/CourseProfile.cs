@@ -13,18 +13,27 @@ namespace Pioneer_Education.Services.MappingProfiles
     {
         public CourseProfile()
         {
-            CreateMap<Course, CourseDTO>();
+            CreateMap<Course, CourseDTO>()
+                .ForMember(dest => dest.CategoryName,
+                               opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<Course, CourseDetailsDTO>()
                 .ForMember(dest => dest.ImageUrls,
-                opt => opt.MapFrom<CourseImagesValueResolver>());
+                opt => opt.MapFrom<CourseImagesValueResolver>())
+                .ForMember(dest => dest.CategoryName,
+                               opt => opt.MapFrom(src => src.Category.Name));
 
-            CreateMap<Course, CourseForAdminDTO>();
+            CreateMap<Course, CourseForAdminDTO>()
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<CourseToCreateDTO, Course>();
 
-            CreateMap<Course, CourseToUpdateDTO>().ForMember(dest => dest.ImageUrls,
-                opt => opt.MapFrom<CourseImagesValueResloverAdmin>()).ReverseMap();
+            CreateMap<Course, CourseToUpdateDTO>()
+                .ForMember(dest => dest.ImageUrls,
+                opt => opt.MapFrom<CourseImagesValueResloverAdmin>())
+                .ForMember(dest => dest.categoryId, opt => opt.MapFrom(src => src.Category.Id))
+                .ForMember(dest => dest.categoryDescription, opt => opt.MapFrom(src => src.Category.Description))
+                .ReverseMap();
 
         }
     }

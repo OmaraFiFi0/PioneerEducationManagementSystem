@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Pioneer_Education.Core.Contracts;
+using Pioneer_Education.Core.Entities.CategoryModule;
 using Pioneer_Education.Core.Entities.CouresModule;
 using Pioneer_Education.Services.Abstraction;
 using Pioneer_Education.Shared.DTOs.CourseDTOs;
@@ -40,7 +41,9 @@ namespace Pioneer_Education.Services.Services
             Enum.TryParse(courseLevel, out CourseLevel courseLevelEnum);
             Expression<Func<Course, bool>> filter = C =>
                             (courseLevel == null || C.CourseLevel == courseLevelEnum)
-                      && (C.CourseStatus != CourseStatus.Draft);
+                      && (C.CourseStatus != CourseStatus.Draft)
+                      && (C.Category.IsActive != false);
+
 
             Expression<Func<Course, object>>? OrderBy = null!;
             Expression<Func<Course, object>>? OrderByDescending = null!;
@@ -68,7 +71,7 @@ namespace Pioneer_Education.Services.Services
 
 
             var courses = await _unitOfWork.GetRepository<Course, int>()
-                             .GetAllAsync(filter, OrderBy, OrderByDescending, [X => X.CourseImages]);
+                             .GetAllAsync(filter, OrderBy, OrderByDescending, [X => X.CourseImages, X => X.Category]);
 
             if (courses is null || !courses.Any())
             {
@@ -77,6 +80,8 @@ namespace Pioneer_Education.Services.Services
 
                 return genericResponse;
             }
+
+
 
             var mappedCourses = _mapper.Map<IEnumerable<Course>, IEnumerable<CourseDTO>>(courses);
 
@@ -93,11 +98,11 @@ namespace Pioneer_Education.Services.Services
 
 
             Expression<Func<Course, bool>> filter = C =>
-                 C.CourseStatus != CourseStatus.Draft;
+                 C.CourseStatus != CourseStatus.Draft && C.Category.IsActive != false;
 
 
             var course = await _unitOfWork.GetRepository<Course, int>()
-                .GetByIdAsync(courseId, filter, [I => I.CourseImages]);
+                .GetByIdAsync(courseId, filter, [I => I.CourseImages, C => C.Category]);
 
             if (course is null)
             {
@@ -166,7 +171,7 @@ namespace Pioneer_Education.Services.Services
 
 
                 courses = await _unitOfWork.GetRepository<Course, int>()
-                   .GetAllAsync(filter, orderByExp, orderByDescendingExp, null);
+                   .GetAllAsync(filter, orderByExp, orderByDescendingExp, [C => C.Category]);
 
 
             }
@@ -206,6 +211,19 @@ namespace Pioneer_Education.Services.Services
                     return genericResponse;
                 }
 
+                var categoryExists = await _unitOfWork.GetRepository<Category, int>().GetAllAsync
+                    (
+                    X => X.Id == createCourse.CategoryId
+                    && X.IsActive
+                    );
+
+                if (!categoryExists.Any())
+                {
+                    genericResponse.StatusCode = StatusCodes.Status400BadRequest;
+                    genericResponse.Message = "Category Not Found Or Inactive";
+
+                    return genericResponse;
+                }
 
                 var courseToCreated = _mapper.Map<CourseToCreateDTO, Course>(createCourse); // DeAttached 
 
@@ -311,7 +329,7 @@ namespace Pioneer_Education.Services.Services
         {
             var genericResponse = new GenericResponse<CourseToUpdateDTO>();
 
-            var course = await _unitOfWork.GetRepository<Course, int>().GetByIdAsync(courseId, null, [I => I.CourseImages]);
+            var course = await _unitOfWork.GetRepository<Course, int>().GetByIdAsync(courseId, null, [I => I.CourseImages, C => C.Category]);
 
             if (course is null)
             {
@@ -337,6 +355,7 @@ namespace Pioneer_Education.Services.Services
             try
             {
                 var course = await _unitOfWork.GetRepository<Course, int>().GetByIdAsync(courseId);
+
                 if (course is null)
                 {
                     genericResponse.StatusCode = StatusCodes.Status404NotFound;
@@ -345,8 +364,24 @@ namespace Pioneer_Education.Services.Services
                     return genericResponse;
                 }
 
+                var categoryExists = await _unitOfWork.GetRepository<Category, int>().GetByIdAsync(updateCourse.categoryId);
+
+                if (categoryExists is null)
+                {
+                    genericResponse.StatusCode = StatusCodes.Status404NotFound;
+                    genericResponse.Message = "Category Not Found";
+                    return genericResponse;
+                }
+
+                else if (!categoryExists.IsActive)
+                {
+                    genericResponse.StatusCode = StatusCodes.Status400BadRequest;
+                    genericResponse.Message = "Category Is Inactive";
+                    return genericResponse;
+                }
 
                 _mapper.Map(updateCourse, course);
+
 
                 switch (course.CourseStatus)
                 {
@@ -480,7 +515,7 @@ namespace Pioneer_Education.Services.Services
             {
 
                 _logger.LogError(ex, "An UnExpected Error Occurred While Deleting Course");
-                genericResponse.StatusCode = StatusCodes.Status400BadRequest;
+                genericResponse.StatusCode = StatusCodes.Status500InternalServerError;
                 genericResponse.Message = "Failed To Delete Course";
                 return genericResponse;
             }
