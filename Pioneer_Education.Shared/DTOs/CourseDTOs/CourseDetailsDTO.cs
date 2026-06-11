@@ -26,9 +26,9 @@ namespace Pioneer_Education.Shared.DTOs.CourseDTOs
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+        public string CategoryName { get; set; } = null!;
 
         public List<string> ImageUrls { get; set; } = [];
-
 
 
 

@@ -15,5 +15,8 @@ namespace Pioneer_Education.Shared.DTOs.CourseDTOs
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public int CategoryId { get; set; }
+
     }
 }

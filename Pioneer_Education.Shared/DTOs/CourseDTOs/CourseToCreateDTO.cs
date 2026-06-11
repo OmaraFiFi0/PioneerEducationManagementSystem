@@ -38,7 +38,8 @@ namespace Pioneer_Education.Shared.DTOs.CourseDTOs
         [Range(0, 100, ErrorMessage = " The Maximun DurationInHours Is 100 Hours , Must Be Positive Value")]
         public int DurationInHours { get; set; }
 
-
+        [Required(ErrorMessage = "CategoryId Is Required ")]
+        public int CategoryId { get; set; }
 
     }
 }

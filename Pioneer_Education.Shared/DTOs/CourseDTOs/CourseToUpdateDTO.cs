@@ -37,6 +37,9 @@ namespace Pioneer_Education.Shared.DTOs.CourseDTOs
         [Range(0, 30, ErrorMessage = " The Maximun Students In Course Is 30 ")]
         public int Capacity { get; set; }
 
+        public int categoryId { get; set; }
+
+        public string? categoryDescription { get; set; }
         public List<string> ImageUrls { get; set; } = [];
 
 
